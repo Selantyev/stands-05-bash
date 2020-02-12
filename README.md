@@ -7,8 +7,10 @@
 `export PS1="\e[0;31m[\u@\h \W]\$ \e[m"`
 
 `alias` - посмотреть все алиасы
-`alias la='ls -a'` - установить новый алиас la
-`alias lala='la -la'` - установить новый алиас lala
+
+`alias la='ls -A'` - задать алиас la
+
+`alias lala='la -la'` - задать новый алиас lala
 
 
 ### Переменные окружения
