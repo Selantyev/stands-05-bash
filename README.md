@@ -125,6 +125,8 @@ awk -F\' '$1=="menuentry " {print $2}' /etc/grub2.cfg
 
 ## sed
 
+[Игра Sokoban на SED](http://sed.sourceforge.net/local/games/sokoban.sed.html)
+
 ```shell
 cd / && ls -l > out.log
 sed 's/root/otus/g' out.log
