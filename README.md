@@ -1,5 +1,6 @@
 # stands-05-bash
 ## Стенд для занятия "Bash"
+[Шпаргалка по bash](https://devhints.io/bash)
 
 ### Connect to vagrant bash
 
@@ -13,6 +14,7 @@ yum install vim bash-completion -y
 [Сделать свое приглашение оболочки](http://ezprompt.net/)
 
 `export PS1="[\[\e[34m\]\d\[\e[m\] - \[\e[36m\]\A\[\e[m\]\[\e[32m\]\w\[\e[m\]]\\$"`
+
 `export PS1="\e[0;31m[\u@\h \W]\$ \e[m"`
 
 #### Приветствия
@@ -31,6 +33,7 @@ alias lala='la -la' # задать новый алиас lala
 
 ### Переменные окружения
 `env` - вывести все системные переменные
+
 `printenv` - или так
 
 #### Установить переменную
@@ -68,10 +71,20 @@ EOF
 more myfile
 ```
 
-### trap.sh - классическая защита от повторного запуска процесса (кроме kill)
-### от перезапуска - класть скрипт в /tmp или /run
-### сейчас лучше через systemd-модули
+### trap.sh
+bash trap - классическая защита от повторного запуска процесса (кроме kill)
+от случайных ребутов и падений питания - класть скрипт в /tmp или /run
+upd: сейчас это лучше делать через systemd-модули
 
+#### Еще один вариант:
+
+```bash
+while [ -f $pid_file ]
+  do
+    echo "Идет фоновый процесс - ждем 300 секунд"
+    sleep 300
+done
+```
 
 ### regexp
 `egrep -v "^#|^$" /etc/sudoers`
@@ -96,11 +109,12 @@ ls
 
 ### awk.sh - test.awk
 ```shell
-cat /etc/passwd | awk -F":" -f test.awk
 awk -F":" '{ print $1" : "$7}' /etc/passwd
 more /var/log/nginx/access.log | awk '{print $1" "$9}' | uniq | wc -l
 more /var/log/nginx/access.log | awk '{print $1}' | uniq | wc -l
 cat /var/log/nginx/access.log | awk '/GET...'
+
+cat /etc/passwd | awk -F":" -f test.awk
 ```
 
 
