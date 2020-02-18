@@ -1,8 +1,7 @@
-# stands-05-bash
-## Стенд для занятия "Bash"
+# Стенд для занятия "Bash"
 [Шпаргалка по bash](https://devhints.io/bash)
 
-### Connect to vagrant bash
+## Connect to vagrant bash
 
 ```shell
 vagrant ssh bash
@@ -10,14 +9,14 @@ sudo -i
 yum install vim bash-completion -y
 ```
 
-### Приглашения оболочки
+## Приглашения оболочки
 [Сделать свое приглашение оболочки](http://ezprompt.net/)
 
 `export PS1="[\[\e[34m\]\d\[\e[m\] - \[\e[36m\]\A\[\e[m\]\[\e[32m\]\w\[\e[m\]]\\$"`
 
 `export PS1="\e[0;31m[\u@\h \W]\$ \e[m"`
 
-#### Приветствия
+## Приветствия
 
 ```shell
 echo "echo $USER" >> ~/.bash_profile
@@ -31,21 +30,21 @@ alias la='ls -A' # задать алиас la
 alias lala='la -la' # задать новый алиас lala
 ```
 
-### Переменные окружения
+## Переменные окружения
 `env` - вывести все системные переменные
 
 `printenv` - или так
 
-#### Установить переменную
+### Установить переменную
 `export var=var`
 
-#### Считать переменную
+### Считать переменную
 ```shell
 echo $var
 $(ls -a)
 ```
 
-### Перенаправления
+## Перенаправления
 
 ```bash
 mkfifo my-pipe
@@ -57,7 +56,7 @@ more < my-pipe
 echo "hello, my-pipe" > my-pipe
 ```
 
-#### EOF - запись multiline строк
+### EOF - запись multiline строк
 
 ```bash
 tee my-notes << EOF
@@ -71,13 +70,12 @@ EOF
 more myfile
 ```
 
-### trap.sh
+## trap.sh
 bash trap - классическая защита от повторного запуска процесса (кроме kill)
 от случайных ребутов и падений питания - класть скрипт в /tmp или /run
 upd: сейчас это лучше делать через systemd-модули
 
-#### Еще один вариант:
-
+Еще один вариант:
 ```bash
 while [ -f $pid_file ]
   do
@@ -86,11 +84,16 @@ while [ -f $pid_file ]
 done
 ```
 
-### regexp
+## regexp
+Полезные сайты по регуляркам:
+[regexr](https://regexr.com/)
+[regex101](https://regex101.com/)
+
 `egrep -v "^#|^$" /etc/sudoers`
 
 
-### bash globbing
+
+## bash globbing
 
 ```bash
 cd /vagrant
@@ -107,7 +110,7 @@ find ./ -name "log*" -delete  # а это нормально работает
 ls
 ```
 
-### awk.sh - test.awk
+## awk.sh - test.awk
 ```shell
 awk -F":" '{ print $1" : "$7}' /etc/passwd
 more /var/log/nginx/access.log | awk '{print $1" "$9}' | uniq | wc -l
@@ -115,10 +118,12 @@ more /var/log/nginx/access.log | awk '{print $1}' | uniq | wc -l
 cat /var/log/nginx/access.log | awk '/GET...'
 
 cat /etc/passwd | awk -F":" -f test.awk
+
+awk -F\' '$1=="menuentry " {print $2}' /etc/grub2.cfg
 ```
 
 
-### sed
+## sed
 
 ```shell
 cd / && ls -l > out.log
